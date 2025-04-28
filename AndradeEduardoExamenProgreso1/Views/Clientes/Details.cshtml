@@ -1,0 +1,48 @@
+﻿@model AndradeEduardoExamenProgreso1.Models.Cliente
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<h1>Details</h1>
+
+<div>
+    <h4>Cliente</h4>
+    <hr />
+    <dl class="row">
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Nombre)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Nombre)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Edad)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Edad)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Presupuesto)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Presupuesto)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.tienePuntos)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.tienePuntos)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.fechaAproximadaReserva)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.fechaAproximadaReserva)
+        </dd>
+    </dl>
+</div>
+<div>
+    <a asp-action="Edit" asp-route-id="@Model?.clienteId">Edit</a> |
+    <a asp-action="Index">Back to List</a>
+</div>

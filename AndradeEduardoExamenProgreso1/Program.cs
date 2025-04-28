@@ -1,9 +1,10 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
+using AndradeEduardoExamenProgreso1.Data;
 
 var builder = WebApplication.CreateBuilder(args);
-builder.Services.AddDbContext<AppBaseDatosContextSQLServer>(options =>
-    options.UseSqlServer(builder.Configuration.GetConnectionString("AppBaseDatosContextSQLServer") ?? throw new InvalidOperationException("Connection string 'AppBaseDatosContextSQLServer' not found.")));
+builder.Services.AddDbContext<AndradeEduardoExamenProgreso1Context>(options =>
+    options.UseSqlServer(builder.Configuration.GetConnectionString("AndradeEduardoExamenProgreso1Context") ?? throw new InvalidOperationException("Connection string 'AndradeEduardoExamenProgreso1Context' not found.")));
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
