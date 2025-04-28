@@ -1,0 +1,39 @@
+﻿@model AndradeEduardoExamenProgreso1.Models.Recompensas
+
+@{
+    ViewData["Title"] = "Eliminar Recompensa";
+}
+
+<h2>Eliminar Recompensa</h2>
+
+<h3>¿Estás seguro de que deseas eliminar esta recompensa?</h3>
+
+<div>
+    <h4>Recompensa</h4>
+    <hr />
+    <dl class="row">
+        <dt class="col-sm-2">Id</dt>
+        <dd class="col-sm-10">@Model.Id</dd>
+
+        <dt class="col-sm-2">Puntos</dt>
+        <dd class="col-sm-10">@Model.puntos</dd>
+
+        <dt class="col-sm-2">Tipo Recompensa</dt>
+        <dd class="col-sm-10">@Model.tipoRecompensa</dd>
+
+        <dt class="col-sm-2">Fecha Inicio</dt>
+        <dd class="col-sm-10">@Model.fechaInicio.ToShortDateString()</dd>
+
+        <dt class="col-sm-2">ClienteId</dt>
+        <dd class="col-sm-10">@Model.clienteId</dd>
+
+        <dt class="col-sm-2">ReservaId</dt>
+        <dd class="col-sm-10">@Model.reservaId</dd>
+    </dl>
+</div>
+
+<form asp-action="DeleteConfirmed" method="post">
+    <input type="hidden" asp-for="Id" />
+    <button type="submit" class="btn btn-danger mt-3">Eliminar</button>
+    <a asp-action="Index" class="btn btn-secondary mt-3">Cancelar</a>
+</form>

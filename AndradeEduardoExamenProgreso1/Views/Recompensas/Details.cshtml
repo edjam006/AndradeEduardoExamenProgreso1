@@ -1,0 +1,36 @@
+﻿@model AndradeEduardoExamenProgreso1.Models.Recompensas
+
+@{
+    ViewData["Title"] = "Detalles de la Recompensa";
+}
+
+<h2>Detalles de la Recompensa</h2>
+
+<div>
+    <h4>Recompensa</h4>
+    <hr />
+    <dl class="row">
+        <dt class="col-sm-2">Id</dt>
+        <dd class="col-sm-10">@Model.Id</dd>
+
+        <dt class="col-sm-2">Puntos</dt>
+        <dd class="col-sm-10">@Model.puntos</dd>
+
+        <dt class="col-sm-2">Tipo Recompensa</dt>
+        <dd class="col-sm-10">@Model.tipoRecompensa</dd>
+
+        <dt class="col-sm-2">Fecha Inicio</dt>
+        <dd class="col-sm-10">@Model.fechaInicio.ToShortDateString()</dd>
+
+        <dt class="col-sm-2">ClienteId</dt>
+        <dd class="col-sm-10">@Model.clienteId</dd>
+
+        <dt class="col-sm-2">ReservaId</dt>
+        <dd class="col-sm-10">@Model.reservaId</dd>
+    </dl>
+</div>
+
+<div class="mt-3">
+    <a asp-action="Edit" asp-route-id="@Model.Id" class="btn btn-warning">Editar</a> |
+    <a asp-action="Index" class="btn btn-secondary">Volver al listado</a>
+</div>
