@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace AndradeEduardoExamenProgreso1.Migrations
 {
     [DbContext(typeof(AndradeEduardoExamenProgreso1Context))]
-    [Migration("20250428165317_CrearClienteBien")]
-    partial class CrearClienteBien
+    [Migration("20250428190502_AgregarFechaSalidaAReserva")]
+    partial class AgregarFechaSalidaAReserva
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -54,6 +54,41 @@ namespace AndradeEduardoExamenProgreso1.Migrations
                     b.HasKey("clienteId");
 
                     b.ToTable("Cliente");
+                });
+
+            modelBuilder.Entity("AndradeEduardoExamenProgreso1.Models.Reserva", b =>
+                {
+                    b.Property<int>("reservaId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("reservaId"));
+
+                    b.Property<int>("clienteId")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime>("fechaIngreso")
+                        .HasColumnType("datetime2");
+
+                    b.Property<DateTime>("fechaSalida")
+                        .HasColumnType("datetime2");
+
+                    b.HasKey("reservaId");
+
+                    b.HasIndex("clienteId");
+
+                    b.ToTable("Reserva");
+                });
+
+            modelBuilder.Entity("AndradeEduardoExamenProgreso1.Models.Reserva", b =>
+                {
+                    b.HasOne("AndradeEduardoExamenProgreso1.Models.Cliente", "Cliente")
+                        .WithMany()
+                        .HasForeignKey("clienteId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Cliente");
                 });
 #pragma warning restore 612, 618
         }

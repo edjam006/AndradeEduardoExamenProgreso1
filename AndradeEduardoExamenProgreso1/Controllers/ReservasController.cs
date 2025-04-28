@@ -25,36 +25,38 @@ namespace AndradeEduardoExamenProgreso1.Controllers
         }
 
         // GET: Reservas/Create
+        // GET: Reservas/Create
         public IActionResult Create()
         {
-            ViewData["clienteId"] = new SelectList(_context.Cliente, "clienteId", "Nombre");
+            ViewBag.Clientes = new SelectList(_context.Cliente.ToList(), "clienteId", "Nombre");
             return View();
         }
 
         // POST: Reservas/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
+
         public async Task<IActionResult> Create(Reserva reserva)
         {
+            // Forzar para pruebas
+            reserva.clienteId = 1; // Obligatoriamente asignamos un cliente
+            reserva.fechaIngreso = reserva.fechaIngreso == DateTime.MinValue ? DateTime.Now : reserva.fechaIngreso;
+            reserva.fechaSalida = reserva.fechaSalida == DateTime.MinValue ? DateTime.Now.AddDays(1) : reserva.fechaSalida;
+
             if (ModelState.IsValid)
             {
-                _context.Add(reserva);
-
-                // Buscar el cliente y sumar 100 puntos
-                var cliente = await _context.Cliente.FindAsync(reserva.clienteId);
-                if (cliente != null)
-                {
-                    cliente.tienePuntos = true; // Marcar que el cliente tiene puntos
-                    // Aquí actualizarías también los puntos acumulados si tuvieras una tabla de Plan de Recompensas
-                }
-
+                _context.Reserva.Add(reserva);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
 
-            ViewData["clienteId"] = new SelectList(_context.Cliente, "clienteId", "Nombre", reserva.clienteId);
+            ViewBag.Clientes = new SelectList(_context.Cliente.ToList(), "clienteId", "Nombre", reserva.clienteId);
             return View(reserva);
         }
+
+
+
+
 
         // GET: Reservas/Edit/5
         public async Task<IActionResult> Edit(int? id)
@@ -64,7 +66,7 @@ namespace AndradeEduardoExamenProgreso1.Controllers
             var reserva = await _context.Reserva.FindAsync(id);
             if (reserva == null) return NotFound();
 
-            ViewData["clienteId"] = new SelectList(_context.Cliente, "clienteId", "Nombre", reserva.clienteId);
+            ViewBag.clienteId = new SelectList(_context.Cliente.ToList(), "clienteId", "Nombre", reserva.clienteId);
             return View(reserva);
         }
 
@@ -92,7 +94,7 @@ namespace AndradeEduardoExamenProgreso1.Controllers
                 return RedirectToAction(nameof(Index));
             }
 
-            ViewData["clienteId"] = new SelectList(_context.Cliente, "clienteId", "Nombre", reserva.clienteId);
+            ViewBag.clienteId = new SelectList(_context.Cliente.ToList(), "clienteId", "Nombre", reserva.clienteId);
             return View(reserva);
         }
 

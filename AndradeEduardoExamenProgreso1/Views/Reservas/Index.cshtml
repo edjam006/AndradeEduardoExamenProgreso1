@@ -1,47 +1,36 @@
 ﻿@model IEnumerable<AndradeEduardoExamenProgreso1.Models.Reserva>
 
 @{
-    ViewData["Title"] = "Index";
+    ViewData["Title"] = "Reservas";
 }
 
-<h1>Index</h1>
+<h2>Reservas Registradas</h2>
 
 <p>
-    <a asp-action="Create">Create New</a>
+    <a class="btn btn-success" href="@Url.Action("Create")">Nueva Reserva</a>
 </p>
-<table class="table">
+
+<table class="table table-striped">
     <thead>
         <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.fechaIngreso)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.fechaSalida)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.clienteId)
-            </th>
-            <th></th>
+            <th>Cliente</th>
+            <th>Fecha Ingreso</th>
+            <th>Fecha Salida</th>
+            <th>Acciones</th>
         </tr>
     </thead>
     <tbody>
-@foreach (var item in Model) {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.fechaIngreso)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.fechaSalida)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.clienteId)
-            </td>
-            <td>
-                <a asp-action="Edit" asp-route-id="@item.reservaId">Edit</a> |
-                <a asp-action="Details" asp-route-id="@item.reservaId">Details</a> |
-                <a asp-action="Delete" asp-route-id="@item.reservaId">Delete</a>
-            </td>
-        </tr>
-}
+        @foreach (var reserva in Model)
+        {
+            <tr>
+                <td>@reserva.Cliente?.Nombre</td>
+                <td>@reserva.fechaIngreso.ToShortDateString()</td>
+                <td>@reserva.fechaSalida.ToShortDateString()</td>
+                <td>
+                    <a class="btn btn-warning btn-sm" href="@Url.Action("Edit", new { id = reserva.reservaId })">Editar</a>
+                    <a class="btn btn-danger btn-sm" href="@Url.Action("Delete", new { id = reserva.reservaId })">Eliminar</a>
+                </td>
+            </tr>
+        }
     </tbody>
 </table>
