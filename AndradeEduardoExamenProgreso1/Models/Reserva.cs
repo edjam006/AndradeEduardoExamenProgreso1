@@ -15,5 +15,7 @@ namespace AndradeEduardoExamenProgreso1.Models
 
         [Required]
         public int clienteId { get; set; }
+        public Cliente Cliente { get; set; }
+
     }
 }
