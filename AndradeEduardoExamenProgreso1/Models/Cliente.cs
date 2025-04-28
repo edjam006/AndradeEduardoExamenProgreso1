@@ -6,7 +6,7 @@ namespace AndradeEduardoExamenProgreso1.Models
 {
     public class Cliente
     {
-        [Required]
+        [Key]
         public int clienteId { get; set; }
 
         [Required]

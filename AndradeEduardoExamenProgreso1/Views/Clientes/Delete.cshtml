@@ -1,51 +1,39 @@
 ﻿@model AndradeEduardoExamenProgreso1.Models.Cliente
 
 @{
-    ViewData["Title"] = "Delete";
+    ViewData["Title"] = "Eliminar Cliente";
 }
 
-<h1>Delete</h1>
+<h2>Eliminar Cliente</h2>
 
-<h3>Are you sure you want to delete this?</h3>
+<h3>¿Estás seguro de que deseas eliminar este cliente?</h3>
+
 <div>
     <h4>Cliente</h4>
     <hr />
     <dl class="row">
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Nombre)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Nombre)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Edad)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Edad)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Presupuesto)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Presupuesto)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.tienePuntos)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.tienePuntos)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.fechaAproximadaReserva)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.fechaAproximadaReserva)
-        </dd>
+        <dt class="col-sm-2">ID</dt>
+        <dd class="col-sm-10">@Model.clienteId</dd>
+
+        <dt class="col-sm-2">Nombre</dt>
+        <dd class="col-sm-10">@Model.Nombre</dd>
+
+        <dt class="col-sm-2">Edad</dt>
+        <dd class="col-sm-10">@Model.Edad</dd>
+
+        <dt class="col-sm-2">Presupuesto</dt>
+        <dd class="col-sm-10">@Model.Presupuesto.ToString("C")</dd>
+
+        <dt class="col-sm-2">Tiene Puntos</dt>
+        <dd class="col-sm-10">@((Model.tienePuntos) ? "Sí" : "No")</dd>
+
+        <dt class="col-sm-2">Fecha de Reserva</dt>
+        <dd class="col-sm-10">@Model.fechaAproximadaReserva.ToShortDateString()</dd>
     </dl>
-    
+
     <form asp-action="Delete">
         <input type="hidden" asp-for="clienteId" />
-        <input type="submit" value="Delete" class="btn btn-danger" /> |
-        <a asp-action="Index">Back to List</a>
+        <button type="submit" class="btn btn-danger">Eliminar</button>
+        <a class="btn btn-secondary" href="@Url.Action("Index")">Cancelar</a>
     </form>
 </div>
